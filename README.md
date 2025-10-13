@@ -34,7 +34,7 @@ pnpm run demo:readonly
 
 ### Hedera to Sepolia (LINK Payment)
 
-> ℹ️ **Prerequisite**: This demo requires LINK tokens on Hedera testnet. If you don't have any, get them from the [Hedera LINK faucet](https://faucets.chain.link/hedera-testnet).
+> ℹ️ **Requires LINK tokens** — Get them from the [Hedera LINK faucet](https://faucets.chain.link/hedera-testnet)
 
 Send a message from Hedera to Sepolia, paying fees in LINK:
 
@@ -44,11 +44,7 @@ pnpm run demo:hedera-sepolia-link
 
 ### Hedera to Sepolia (WHBAR Payment)
 
-> ℹ️ **Prerequisite**: This demo requires WHBAR tokens. If you don't have any WHBAR, wrap your HBAR first:
->
-> ```bash
-> pnpm run wrap-hbar
-> ```
+> ℹ️ **Requires WHBAR tokens** — If needed, wrap HBAR first: `pnpm run wrap-hbar`
 
 Send a message from Hedera to Sepolia, paying fees in Wrapped HBAR:
 
@@ -58,7 +54,7 @@ pnpm run demo:hedera-sepolia-whbar
 
 ### Sepolia to Hedera (ETH Payment)
 
-> ℹ️ **Prerequisite**: This demo requires Sepolia ETH. If you don't have any, get it from the [Sepolia faucet](https://faucets.chain.link/sepolia).
+> ℹ️ **Requires Sepolia ETH** — Get it from the [Sepolia faucet](https://faucets.chain.link/sepolia)
 
 Send a message from Sepolia to Hedera, paying fees in native ETH:
 
