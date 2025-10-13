@@ -34,13 +34,13 @@ pnpm run demo:readonly
 
 ### Hedera to Sepolia (LINK Payment)
 
+> ℹ️ **Prerequisite**: This demo requires LINK tokens on Hedera testnet. If you don't have any, get them from the [Hedera LINK faucet](https://faucets.chain.link/hedera-testnet).
+
 Send a message from Hedera to Sepolia, paying fees in LINK:
 
 ```bash
 pnpm run demo:hedera-sepolia-link
 ```
-
-Requirements: LINK tokens on Hedera testnet
 
 ### Hedera to Sepolia (WHBAR Payment)
 
@@ -58,13 +58,13 @@ pnpm run demo:hedera-sepolia-whbar
 
 ### Sepolia to Hedera (ETH Payment)
 
+> ℹ️ **Prerequisite**: This demo requires Sepolia ETH. If you don't have any, get it from the [Sepolia faucet](https://faucets.chain.link/sepolia).
+
 Send a message from Sepolia to Hedera, paying fees in native ETH:
 
 ```bash
 pnpm run demo:sepolia-hedera
 ```
-
-Requirements: Sepolia ETH
 
 ## Network Details
 
