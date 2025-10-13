@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "demo:readonly": "tsx demo-hedera-readonly.ts",
-    "demo:hedera-sepolia": "tsx demo-hedera-message.ts",
+    "demo:hedera-sepolia-link": "tsx demo-hedera-message.ts",
     "demo:hedera-sepolia-whbar": "tsx demo-hedera-message-hbar.ts",
     "demo:sepolia-hedera": "tsx demo-sepolia-hedera.ts",
     "wrap-hbar": "tsx wrap-hbar.ts"

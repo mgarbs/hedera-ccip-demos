@@ -37,7 +37,7 @@ pnpm run demo:readonly
 Send a message from Hedera to Sepolia, paying fees in LINK:
 
 ```bash
-pnpm run demo:hedera-sepolia
+pnpm run demo:hedera-sepolia-link
 ```
 
 Requirements: LINK tokens on Hedera testnet
