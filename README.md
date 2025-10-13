@@ -44,18 +44,16 @@ Requirements: LINK tokens on Hedera testnet
 
 ### Hedera to Sepolia (WHBAR Payment)
 
+> ℹ️ **Prerequisite**: This demo requires WHBAR tokens. If you don't have any WHBAR, wrap your HBAR first:
+>
+> ```bash
+> pnpm run wrap-hbar
+> ```
+
 Send a message from Hedera to Sepolia, paying fees in Wrapped HBAR:
 
 ```bash
 pnpm run demo:hedera-sepolia-whbar
-```
-
-Requirements: WHBAR tokens on Hedera testnet
-
-To wrap HBAR to WHBAR:
-
-```bash
-pnpm run wrap-hbar
 ```
 
 ### Sepolia to Hedera (ETH Payment)
