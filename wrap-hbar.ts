@@ -4,6 +4,7 @@
  * This script wraps native HBAR into WHBAR (Wrapped HBAR)
  */
 
+import "dotenv/config";
 import { createPublicClient, createWalletClient, http, parseEther } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 

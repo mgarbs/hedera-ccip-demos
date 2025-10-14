@@ -4,6 +4,7 @@
  * This demo sends a cross-chain message from Sepolia to Hedera, paying fee in ETH
  */
 
+import "dotenv/config";
 import * as CCIP from '@chainlink/ccip-js'
 import { createPublicClient, createWalletClient, http } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
@@ -112,9 +113,47 @@ async function main() {
   })
 
   console.log(`\nYou can pay fees with any of these ${supportedFeeTokens.length} tokens:\n`)
-  supportedFeeTokens.forEach((token, i) => {
-    console.log(`  ${i + 1}. ${token}`)
-  })
+  
+  // Fetch token details for each supported token
+  for (let i = 0; i < supportedFeeTokens.length; i++) {
+    const tokenAddress = supportedFeeTokens[i]
+    
+    try {
+      // Fetch token symbol and name
+      const [symbol, name] = await Promise.all([
+        sepoliaPublicClient.readContract({
+          address: tokenAddress as `0x${string}`,
+          abi: [{
+            name: 'symbol',
+            type: 'function',
+            stateMutability: 'view',
+            inputs: [],
+            outputs: [{ name: '', type: 'string' }],
+          }],
+          functionName: 'symbol',
+        }),
+        sepoliaPublicClient.readContract({
+          address: tokenAddress as `0x${string}`,
+          abi: [{
+            name: 'name',
+            type: 'function',
+            stateMutability: 'view',
+            inputs: [],
+            outputs: [{ name: '', type: 'string' }],
+          }],
+          functionName: 'name',
+        })
+      ])
+      
+      console.log(`  ${i + 1}. ${symbol} (${name})`)
+      console.log(`     ${tokenAddress}`)
+    } catch (error) {
+      // Fallback if token doesn't have standard ERC-20 methods
+      console.log(`  ${i + 1}. ${tokenAddress}`)
+      console.log(`     (Unable to fetch token details)`)
+    }
+  }
+  
   console.log(`\nOr use native ETH to pay fees.\n`)
 
   console.log('═══════════════════════════════════════════════════════════')

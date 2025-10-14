@@ -152,7 +152,6 @@ async function main() {
   }
 
   // Approve LINK for fees
-  console.log("⏳ Approving LINK for CCIP fees...");
   const approvalAmount = BigInt(10 ** Number(linkDecimals)); // 1 LINK
 
   const allowance = await ccipClient.getAllowance({
@@ -163,6 +162,7 @@ async function main() {
   });
 
   if (allowance < approvalAmount) {
+    console.log("⏳ Approving LINK for CCIP fees...");
     const { txHash } = await ccipClient.approveRouter({
       client: hederaWalletClient,
       routerAddress: HEDERA_CONFIG.routerAddress,
@@ -204,13 +204,15 @@ async function main() {
   // because Hedera has "non-standard decimals" (you'll see this in the log above).
   //
   // To get the actual LINK fee amount:
-  // 1. LINK token has 18 decimals (standard ERC-20)
+  // 1. Token has its standard decimals (e.g., LINK has 18 decimals)
   // 2. CCIP adds 10 extra decimals for Hedera scaling
-  // 3. Total: we need to divide by 1e28 (18 + 10 = 28 decimals)
+  // 3. Total: we need to divide by (token decimals + 10 Hedera scaling decimals)
   //
-  // Example: Raw fee of 229141077173199970000000000 ÷ 1e28 = 0.022914... LINK
+  // Example: Raw fee of 229141077173199970000000000 ÷ 10^28 = 0.022914... LINK
   // ═══════════════════════════════════════════════════════════════════════════════════════
-  const actualFee = Number(fee) / 1e28;
+  const HEDERA_SCALING_DECIMALS = 10;
+  const totalLinkDecimals = Number(linkDecimals) + HEDERA_SCALING_DECIMALS;
+  const actualFee = Number(fee) / 10 ** totalLinkDecimals;
 
   console.log(`Message fee: ${actualFee} LINK`);
 
