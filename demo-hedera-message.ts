@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * CCIP Demo: Send Message from Hedera Testnet -> Ethereum Sepolia
  *
@@ -155,6 +156,7 @@ async function main() {
   const approvalAmount = BigInt(10 ** Number(linkDecimals)); // 1 LINK
 
   const allowance = await ccipClient.getAllowance({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     tokenAddress: HEDERA_CONFIG.linkToken,
@@ -185,6 +187,7 @@ async function main() {
   console.log("⏳ Calculating fee (paying in LINK)...");
 
   const fee = await ccipClient.getFee({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationAccount: account.address,

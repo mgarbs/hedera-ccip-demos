@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * CCIP Demo: Send Message from Hedera Testnet -> Ethereum Sepolia (Pay in HBAR)
  *
@@ -146,12 +147,12 @@ async function main() {
   console.log("═══════════════════════════════════════════════════════════\n");
 
   console.log("⏳ Fetching supported fee tokens...");
+  // @ts-ignore - Type compatibility issue between viem and CCIP SDK
   const supportedFeeTokens = await ccipClient.getSupportedFeeTokens({
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationChainSelector: SEPOLIA_CONFIG.chainSelector
   });
-
   console.log(`\nSupported fee tokens (${supportedFeeTokens.length}):\n`);
   supportedFeeTokens.forEach((token, i) => {
     const name =
@@ -173,6 +174,7 @@ async function main() {
 
   //Get fee in WHBAR
   const feeInWhbar = await ccipClient.getFee({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationAccount: account.address,
@@ -201,6 +203,7 @@ async function main() {
 
   // Check and approve WHBAR
   const allowance = await ccipClient.getAllowance({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     tokenAddress: HEDERA_CONFIG.whbarToken,
@@ -228,6 +231,7 @@ async function main() {
   console.log("⏳ Calculating fees...");
   // Compare fee in LINK
   const feeInLink = await ccipClient.getFee({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationAccount: account.address,
