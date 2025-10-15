@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * CCIP Read-Only Demo: Hedera Testnet Configuration
  *
@@ -72,6 +73,7 @@ async function main() {
 
   console.log('⏳ Checking if LINK is supported on Hedera→Sepolia lane...')
   const isLinkSupported = await ccipClient.isTokenSupported({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationChainSelector: SEPOLIA_CONFIG.chainSelector,
@@ -87,6 +89,7 @@ async function main() {
 
   console.log('⏳ Fetching supported fee tokens for Hedera→Sepolia...')
   const supportedFeeTokens = await ccipClient.getSupportedFeeTokens({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationChainSelector: SEPOLIA_CONFIG.chainSelector,
@@ -109,6 +112,7 @@ async function main() {
 
   console.log('⏳ Fetching OnRamp address for Hedera→Sepolia...')
   const onRampAddress = await ccipClient.getOnRampAddress({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationChainSelector: SEPOLIA_CONFIG.chainSelector,
@@ -123,6 +127,7 @@ async function main() {
 
   console.log('⏳ Fetching lane rate limits...')
   const laneRateLimits = await ccipClient.getLaneRateRefillLimits({
+    // @ts-ignore
     client: hederaPublicClient,
     routerAddress: HEDERA_CONFIG.routerAddress,
     destinationChainSelector: SEPOLIA_CONFIG.chainSelector,
@@ -138,7 +143,8 @@ async function main() {
   console.log('⏳ Fetching LINK token rate limits...')
   try {
     const tokenRateLimits = await ccipClient.getTokenRateLimitByLane({
-      client: hederaPublicClient,
+      // @ts-ignore
+    client: hederaPublicClient,
       routerAddress: HEDERA_CONFIG.routerAddress,
       supportedTokenAddress: HEDERA_CONFIG.linkToken,
       destinationChainSelector: SEPOLIA_CONFIG.chainSelector,
@@ -163,7 +169,8 @@ async function main() {
   console.log('⏳ Fetching Token Admin Registry address...')
   try {
     const tokenAdminRegistry = await ccipClient.getTokenAdminRegistry({
-      client: hederaPublicClient,
+      // @ts-ignore
+    client: hederaPublicClient,
       routerAddress: HEDERA_CONFIG.routerAddress,
       destinationChainSelector: SEPOLIA_CONFIG.chainSelector,
       tokenAddress: HEDERA_CONFIG.linkToken,

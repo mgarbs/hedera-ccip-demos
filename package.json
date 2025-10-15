@@ -23,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "@chainlink/ccip-js": "^0.2.4",
+    "dotenv": "^17.2.3",
     "viem": "^2.21.25"
   },
   "devDependencies": {
