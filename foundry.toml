@@ -1,0 +1,13 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["node_modules", "lib"]
+solc_version = "0.8.28"
+evm_version = "cancun"
+
+# RPC endpoints
+[rpc_endpoints]
+hedera_testnet = "https://testnet.hashio.io/api"
+sepolia = "https://ethereum-sepolia-rpc.publicnode.com"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
