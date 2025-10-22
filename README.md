@@ -1,18 +1,8 @@
 # Hedera CCIP Demos
 
-Demonstration of bi-directional cross-chain messaging between Hedera Testnet and Ethereum Sepolia using Chainlink's Cross-Chain Interoperability Protocol (CCIP).
-
-This repository contains both TypeScript demos and Foundry tests with balance tracking.
+Foundry-based tests demonstrating bi-directional cross-chain messaging between Hedera Testnet and Ethereum Sepolia using Chainlink's Cross-Chain Interoperability Protocol (CCIP) with proper balance tracking.
 
 ## Installation
-
-### TypeScript Demos
-
-```bash
-pnpm install
-```
-
-### Foundry Tests
 
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
@@ -34,30 +24,30 @@ Edit `.env` and set your testnet private key:
 PRIVATE_KEY=0x...
 ```
 
-## Foundry Tests
+## Running Tests
 
-The Foundry tests demonstrate proper balance tracking for CCIP transactions. Each test records the starting balance, executes the CCIP transaction, and verifies that the balance difference equals the fee paid.
+The tests demonstrate proper balance tracking for CCIP transactions. Each test records the starting balance, executes the CCIP transaction, and verifies that the balance difference equals the fee paid.
 
 ### Sepolia → Hedera
 
 ```bash
-# Native ETH payment
+# Native ETH payment with balance tracking
 forge test --match-test test_SendMessageWithNativeETH -vvv
 
-# LINK payment
+# LINK payment with balance tracking
 forge test --match-test test_SendMessageWithLINK --match-contract SepoliaCCIPTest -vvv
 ```
 
 ### Hedera → Sepolia
 
 ```bash
-# Native HBAR payment
+# Native HBAR payment with balance tracking
 forge test --match-test test_SendMessageWithNativeHBAR -vvv
 
-# WHBAR payment
+# WHBAR payment with balance tracking
 forge test --match-test test_SendMessageWithWHBAR -vvv
 
-# LINK payment
+# LINK payment with balance tracking
 forge test --match-test test_SendMessageWithLINK --match-contract HederaCCIPTest -vvv
 ```
 
@@ -65,46 +55,6 @@ forge test --match-test test_SendMessageWithLINK --match-contract HederaCCIPTest
 
 ```bash
 forge build
-```
-
-## TypeScript Demos
-
-### Read-Only Configuration Query
-
-Query CCIP configuration without executing transactions:
-
-```bash
-pnpm run demo:readonly
-```
-
-### Hedera to Sepolia (LINK Payment)
-
-> ℹ️ **Requires LINK tokens** — Get them from the [Hedera LINK faucet](https://faucets.chain.link/hedera-testnet)
-
-Send a message from Hedera to Sepolia, paying fees in LINK:
-
-```bash
-pnpm run demo:hedera-sepolia-link
-```
-
-### Hedera to Sepolia (WHBAR Payment)
-
-> ℹ️ **Requires WHBAR tokens** — If needed, wrap HBAR first: `pnpm run wrap-hbar`
-
-Send a message from Hedera to Sepolia, paying fees in Wrapped HBAR:
-
-```bash
-pnpm run demo:hedera-sepolia-whbar
-```
-
-### Sepolia to Hedera (ETH Payment)
-
-> ℹ️ **Requires Sepolia ETH** — Get it from the [Sepolia faucet](https://faucets.chain.link/sepolia)
-
-Send a message from Sepolia to Hedera, paying fees in native ETH:
-
-```bash
-pnpm run demo:sepolia-hedera
 ```
 
 ## Network Details
@@ -117,6 +67,7 @@ pnpm run demo:sepolia-hedera
 
 ### Ethereum Sepolia
 - Chain ID: 11155111
+- RPC: https://ethereum-sepolia-rpc.publicnode.com
 - CCIP Router: 0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59
 - Chain Selector: 16015286601757825753
 
@@ -134,13 +85,6 @@ pnpm run demo:sepolia-hedera
 - Hedera HBAR: https://portal.hedera.com/faucet
 - Hedera LINK: https://faucets.chain.link/hedera-testnet
 - Sepolia ETH: https://faucets.chain.link/sepolia
-
-## Notes
-
-- All demos use testnet networks only
-- Message delivery typically takes several minutes
-- Token transfers are not yet supported due to incomplete token pool configuration on Hedera testnet
-- WHBAR uses 8 decimals while most EVM tokens use 18 decimals
 
 ## License
 
