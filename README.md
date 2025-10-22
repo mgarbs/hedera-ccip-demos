@@ -2,10 +2,22 @@
 
 Demonstration of bi-directional cross-chain messaging between Hedera Testnet and Ethereum Sepolia using Chainlink's Cross-Chain Interoperability Protocol (CCIP).
 
+This repository contains both TypeScript demos and Foundry tests with balance tracking.
+
 ## Installation
+
+### TypeScript Demos
 
 ```bash
 pnpm install
+```
+
+### Foundry Tests
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+forge install
 ```
 
 ## Configuration
@@ -22,7 +34,40 @@ Edit `.env` and set your testnet private key:
 PRIVATE_KEY=0x...
 ```
 
-## Available Demos
+## Foundry Tests
+
+The Foundry tests demonstrate proper balance tracking for CCIP transactions. Each test records the starting balance, executes the CCIP transaction, and verifies that the balance difference equals the fee paid.
+
+### Sepolia → Hedera
+
+```bash
+# Native ETH payment
+forge test --match-test test_SendMessageWithNativeETH -vvv
+
+# LINK payment
+forge test --match-test test_SendMessageWithLINK --match-contract SepoliaCCIPTest -vvv
+```
+
+### Hedera → Sepolia
+
+```bash
+# Native HBAR payment
+forge test --match-test test_SendMessageWithNativeHBAR -vvv
+
+# WHBAR payment
+forge test --match-test test_SendMessageWithWHBAR -vvv
+
+# LINK payment
+forge test --match-test test_SendMessageWithLINK --match-contract HederaCCIPTest -vvv
+```
+
+### Build
+
+```bash
+forge build
+```
+
+## TypeScript Demos
 
 ### Read-Only Configuration Query
 
