@@ -111,7 +111,7 @@ contract CCIPTestBase is Test {
         if (len >= 6) return s;
         bytes memory out = new bytes(6);
         uint256 pad = 6 - len;
-        for (uint256 i = 0; i < pad; i++) out[i] = bytes1("0");
+        for (uint256 i = 0; i < pad; i++) out[i] = bytes1('0');
         for (uint256 i = 0; i < len; i++) out[pad + i] = bytes(s)[i];
         return string(out);
     }
