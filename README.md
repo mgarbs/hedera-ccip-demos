@@ -26,14 +26,6 @@ SEPOLIA_SENDER_ADDRESS=
 SEPOLIA_RECEIVER_ADDRESS=
 ```
 
-**Getting Your Private Keys:**
-- Export from MetaMask or your wallet (starts with `0x`)
-- **Never commit your `.env` file!**
-
-**Getting an RPC URL:**
-- Sign up for free at [Alchemy](https://www.alchemy.com/) or [Infura](https://infura.io/)
-- Create a Sepolia app and copy the HTTPS URL
-
 **Getting Testnet Funds:**
 - **Hedera HBAR**: [Hedera Faucet](https://portal.hedera.com/faucet) (~100 HBAR)
 - **Sepolia ETH**: [Sepolia Faucet](https://sepoliafaucet.com/) (~0.5 ETH)
@@ -119,6 +111,7 @@ The project demonstrates Chainlink CCIP cross-chain messaging:
 
 You can pay CCIP fees with:
 - **Native tokens**: HBAR or ETH (auto-wrapped to WHBAR on Hedera)
+- **WHBAR**: On hedera
 - **LINK tokens**: Available on both chains
 
 Each transaction includes detailed logging with:
@@ -139,27 +132,6 @@ Each transaction includes detailed logging with:
 - **CCIP Router**: `0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59`
 - **LINK Token**: `0x779877A7B0D9E8603169DdbD7836e478b4624789`
 - **Chain Selector**: `16015286601757825753`
-
-## Project Structure
-
-```
-├── src/
-│   ├── CCIPSender.sol              # Send CCIP messages
-│   └── CCIPReceiver.sol            # Receive CCIP messages
-├── script/
-│   ├── DeployHedera.s.sol          # Deploy to Hedera
-│   ├── DeploySepolia.s.sol         # Deploy to Sepolia
-│   ├── SendHederaToSepolia*.s.sol  # Send from Hedera
-│   └── SendSepoliaToHedera*.s.sol  # Send from Sepolia
-├── test/
-│   ├── HederaCCIP.t.sol            # Hedera tests
-│   ├── SepoliaCCIP.t.sol           # Sepolia tests
-│   └── utils/CCIPTestBase.sol      # Test utilities
-├── deploy.sh                        # Deploy helper
-├── send-hedera.sh                   # Send from Hedera
-├── send-sepolia.sh                  # Send from Sepolia
-└── check-messages.sh                # Check received messages
-```
 
 ## Resources
 
