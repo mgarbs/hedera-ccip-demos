@@ -1,31 +1,28 @@
-# Dependencies
-node_modules/
-package-lock.json
-pnpm-lock.yaml
-yarn.lock
+# Compiler files
+cache/
+out/
 
-# Environment variables
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Dotenv file
 .env
-.env.local
-.env.*.local
+
+# Broadcast transactions
+broadcast/
+cache/
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Build outputs
-dist/
-build/
-*.log
 
 # Foundry
-cache/
-out/
-broadcast/
+lib/
+
+# Node modules (if any)
+node_modules/
+
+# macOS
+.DS_Store
