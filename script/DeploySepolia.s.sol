@@ -7,7 +7,8 @@ import {CCIPMessageReceiver} from "../src/CCIPReceiver.sol";
 
 contract DeploySepolia is Script {
     // Sepolia CCIP Router
-    address constant SEPOLIA_ROUTER = 0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59;
+    address constant SEPOLIA_ROUTER =
+        0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59;
 
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("SEPOLIA_PRIVATE_KEY");
@@ -45,14 +46,34 @@ contract DeploySepolia is Script {
         console.log("");
         console.log("Update your .env file with:");
         console.log("");
-        console.log("SEPOLIA_SENDER_ADDRESS=", vm.toString(address(sender)));
-        console.log("SEPOLIA_RECEIVER_ADDRESS=", vm.toString(address(receiver)));
+        console.log(
+            string.concat(
+                "SEPOLIA_SENDER_ADDRESS=",
+                vm.toString(address(sender))
+            )
+        );
+        console.log(
+            string.concat(
+                "SEPOLIA_RECEIVER_ADDRESS=",
+                vm.toString(address(receiver))
+            )
+        );
         console.log("");
         console.log("Block Number:", block.number);
         console.log("");
         console.log("View on Sepolia Etherscan:");
-        console.log("https://sepolia.etherscan.io/address/", vm.toString(address(sender)));
-        console.log("https://sepolia.etherscan.io/address/", vm.toString(address(receiver)));
+        console.log(
+            string.concat(
+                "https://sepolia.etherscan.io/address/",
+                vm.toString(address(sender))
+            )
+        );
+        console.log(
+            string.concat(
+                "https://sepolia.etherscan.io/address/",
+                vm.toString(address(receiver))
+            )
+        );
         console.log("");
         console.log("========================================");
         console.log("");

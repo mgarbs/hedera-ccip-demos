@@ -24,18 +24,17 @@ contract SepoliaCCIPTest is CCIPTestBase {
         vm.stopPrank();
     }
 
-    function test_DeploymentSuccess() public {
+    function test_DeploymentSuccess() public view {
         assertEq(address(sender.router()), SEPOLIA_ROUTER);
         assertEq(sender.owner(), alice);
         assertEq(address(receiver.getRouter()), SEPOLIA_ROUTER);
     }
 
-    function test_EnumerateSupportedFeeTokens() public view {
+    function test_EnumerateSupportedFeeTokens() public pure {
         console.log("Sepolia Testnet Fee Tokens:");
         console.log("1. Native ETH (address(0))");
         console.log("2. LINK:", SEPOLIA_LINK);
     }
-
 
     function test_SendMessageWithLINK() public {
         // Deal LINK to alice
@@ -65,9 +64,4 @@ contract SepoliaCCIPTest is CCIPTestBase {
         console.logBytes32(messageId);
         console.log("Fee token: LINK");
     }
-
-
-
-
-
 }

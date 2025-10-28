@@ -6,7 +6,7 @@ import {CCIPSender} from "../src/CCIPSender.sol";
 
 contract SendSepoliaToHederaWithETH is Script {
     // Hedera Testnet chain selector for CCIP
-    uint64 constant HEDERA_CHAIN_SELECTOR = 4129082592350369002;
+    uint64 constant HEDERA_CHAIN_SELECTOR = 222782988166878823;
 
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("SEPOLIA_PRIVATE_KEY");
@@ -32,17 +32,21 @@ contract SendSepoliaToHederaWithETH is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        string memory message = string(abi.encodePacked(
-            "Hello from Sepolia! Paid with native ETH at block ",
-            vm.toString(block.number)
-        ));
+        string memory message = string(
+            abi.encodePacked(
+                "Hello from Sepolia! Paid with native ETH at block ",
+                vm.toString(block.number)
+            )
+        );
 
         console.log("Sending message:", message);
         console.log("");
-        console.log("Sending 0.1 ETH (excess will remain in sender contract)...");
+        console.log(
+            "Sending 0.001 ETH (excess will remain in sender contract)..."
+        );
 
         // Send with native ETH (address(0) as fee token)
-        bytes32 messageId = sender.sendMessage{value: 0.1 ether}(
+        bytes32 messageId = sender.sendMessage{value: 0.001 ether}(
             HEDERA_CHAIN_SELECTOR,
             receiverAddress,
             message,
@@ -67,10 +71,20 @@ contract SendSepoliaToHederaWithETH is Script {
         console.log("----------------------------------------");
         console.log("");
         console.log("CCIP Explorer:");
-        console.log("https://ccip.chain.link/msg/", vm.toString(messageId));
+        console.log(
+            string.concat(
+                "https://ccip.chain.link/msg/",
+                vm.toString(messageId)
+            )
+        );
         console.log("");
         console.log("Sepolia Etherscan:");
-        console.log("https://sepolia.etherscan.io/tx/[YOUR_TX_HASH]");
+        console.log(
+            string.concat(
+                "https://sepolia.etherscan.io/tx/",
+                vm.toString(messageId)
+            )
+        );
         console.log("");
         console.log("----------------------------------------");
         console.log("  Verify on Destination");

@@ -7,7 +7,7 @@ import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-sol
 
 contract SendHederaToSepoliaWithWHBAR is Script {
     // Sepolia chain selector for CCIP
-    uint64 constant SEPOLIA_CHAIN_SELECTOR = 16015286601757825753;
+    uint64 constant SEPOLIA_CHAIN_SELECTOR = 222782988166878823;
     // Wrapped HBAR on Hedera Testnet (Updated 2025)
     address constant WHBAR = 0xb1F616b8134F602c3Bb465fB5b5e6565cCAd37Ed;
 
@@ -79,10 +79,10 @@ contract SendHederaToSepoliaWithWHBAR is Script {
         console.log("----------------------------------------");
         console.log("");
         console.log("CCIP Explorer:");
-        console.log("https://ccip.chain.link/msg/", vm.toString(messageId));
+        console.log(string.concat("https://ccip.chain.link/msg/", vm.toString(messageId)));
         console.log("");
         console.log("Hedera HashScan:");
-        console.log("https://hashscan.io/testnet/transaction/[YOUR_TX_HASH]");
+        console.log(string.concat("https://hashscan.io/testnet/transaction/", vm.toString(messageId)));
         console.log("");
         console.log("----------------------------------------");
         console.log("  Verify on Destination");

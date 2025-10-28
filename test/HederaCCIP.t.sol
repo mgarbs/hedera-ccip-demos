@@ -24,13 +24,13 @@ contract HederaCCIPTest is CCIPTestBase {
         vm.stopPrank();
     }
 
-    function test_DeploymentSuccess() public {
+    function test_DeploymentSuccess() public view {
         assertEq(address(sender.router()), HEDERA_ROUTER);
         assertEq(sender.owner(), alice);
         assertEq(address(receiver.getRouter()), HEDERA_ROUTER);
     }
 
-    function test_EnumerateSupportedFeeTokens() public view {
+    function test_EnumerateSupportedFeeTokens() public pure {
         console.log("Hedera Testnet Fee Tokens:");
         console.log("1. Native HBAR (address(0))");
         console.log("2. WHBAR:", HEDERA_WHBAR);

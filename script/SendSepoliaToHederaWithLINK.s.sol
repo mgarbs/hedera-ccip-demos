@@ -7,7 +7,7 @@ import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-sol
 
 contract SendSepoliaToHederaWithLINK is Script {
     // Hedera Testnet chain selector for CCIP
-    uint64 constant HEDERA_CHAIN_SELECTOR = 4129082592350369002;
+    uint64 constant HEDERA_CHAIN_SELECTOR = 222782988166878823;
     // LINK token on Sepolia
     address constant LINK = 0x779877A7B0D9E8603169DdbD7836e478b4624789;
 
@@ -39,14 +39,18 @@ contract SendSepoliaToHederaWithLINK is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        string memory message = string(abi.encodePacked(
-            "Hello from Sepolia! Paid with LINK at block ",
-            vm.toString(block.number)
-        ));
+        string memory message = string(
+            abi.encodePacked(
+                "Hello from Sepolia! Paid with LINK at block ",
+                vm.toString(block.number)
+            )
+        );
 
         console.log("Sending message:", message);
         console.log("");
-        console.log("Approving 1 LINK for fees (excess stays in your wallet)...");
+        console.log(
+            "Approving 1 LINK for fees (excess stays in your wallet)..."
+        );
 
         // Approve sender contract to spend LINK
         IERC20(LINK).approve(senderAddress, 1 ether);
@@ -79,10 +83,20 @@ contract SendSepoliaToHederaWithLINK is Script {
         console.log("----------------------------------------");
         console.log("");
         console.log("CCIP Explorer:");
-        console.log("https://ccip.chain.link/msg/", vm.toString(messageId));
+        console.log(
+            string.concat(
+                "https://ccip.chain.link/msg/",
+                vm.toString(messageId)
+            )
+        );
         console.log("");
         console.log("Sepolia Etherscan:");
-        console.log("https://sepolia.etherscan.io/tx/[YOUR_TX_HASH]");
+        console.log(
+            string.concat(
+                "https://sepolia.etherscan.io/tx/",
+                vm.toString(messageId)
+            )
+        );
         console.log("");
         console.log("----------------------------------------");
         console.log("  Verify on Destination");

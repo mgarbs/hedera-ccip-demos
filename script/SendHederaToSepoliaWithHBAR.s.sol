@@ -32,14 +32,18 @@ contract SendHederaToSepoliaWithHBAR is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        string memory message = string(abi.encodePacked(
-            "Hello from Hedera! Paid with native HBAR at block ",
-            vm.toString(block.number)
-        ));
+        string memory message = string(
+            abi.encodePacked(
+                "Hello from Hedera! Paid with native HBAR at block ",
+                vm.toString(block.number)
+            )
+        );
 
         console.log("Sending message:", message);
         console.log("");
-        console.log("Sending 5 HBAR (excess will remain in sender contract)...");
+        console.log(
+            "Sending 5 HBAR (excess will remain in sender contract)..."
+        );
 
         // Send with native HBAR (address(0) as fee token)
         bytes32 messageId = sender.sendMessage{value: 5 ether}(
@@ -67,7 +71,12 @@ contract SendHederaToSepoliaWithHBAR is Script {
         console.log("----------------------------------------");
         console.log("");
         console.log("CCIP Explorer:");
-        console.log("https://ccip.chain.link/msg/", vm.toString(messageId));
+        console.log(
+            string.concat(
+                "https://ccip.chain.link/msg/",
+                vm.toString(messageId)
+            )
+        );
         console.log("");
         console.log("Hedera HashScan:");
         console.log("https://hashscan.io/testnet/transaction/[YOUR_TX_HASH]");

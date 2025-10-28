@@ -45,14 +45,34 @@ contract DeployHedera is Script {
         console.log("");
         console.log("Update your .env file with:");
         console.log("");
-        console.log("HEDERA_SENDER_ADDRESS=", vm.toString(address(sender)));
-        console.log("HEDERA_RECEIVER_ADDRESS=", vm.toString(address(receiver)));
+        console.log(
+            string.concat(
+                "HEDERA_SENDER_ADDRESS=",
+                vm.toString(address(sender))
+            )
+        );
+        console.log(
+            string.concat(
+                "HEDERA_RECEIVER_ADDRESS=",
+                vm.toString(address(receiver))
+            )
+        );
         console.log("");
         console.log("Block Number:", block.number);
         console.log("");
         console.log("View on Hedera HashScan:");
-        console.log("https://hashscan.io/testnet/contract/", vm.toString(address(sender)));
-        console.log("https://hashscan.io/testnet/contract/", vm.toString(address(receiver)));
+        console.log(
+            string.concat(
+                "https://hashscan.io/testnet/contract/",
+                vm.toString(address(sender))
+            )
+        );
+        console.log(
+            string.concat(
+                "https://hashscan.io/testnet/contract/",
+                vm.toString(address(receiver))
+            )
+        );
         console.log("");
         console.log("========================================");
         console.log("");

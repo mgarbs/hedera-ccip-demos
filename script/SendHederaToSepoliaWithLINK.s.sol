@@ -39,14 +39,18 @@ contract SendHederaToSepoliaWithLINK is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        string memory message = string(abi.encodePacked(
-            "Hello from Hedera! Paid with LINK at block ",
-            vm.toString(block.number)
-        ));
+        string memory message = string(
+            abi.encodePacked(
+                "Hello from Hedera! Paid with LINK at block ",
+                vm.toString(block.number)
+            )
+        );
 
         console.log("Sending message:", message);
         console.log("");
-        console.log("Approving 1 LINK for fees (excess stays in your wallet)...");
+        console.log(
+            "Approving 1 LINK for fees (excess stays in your wallet)..."
+        );
 
         // Approve sender contract to spend LINK
         IERC20(LINK).approve(senderAddress, 1 ether);
@@ -79,7 +83,12 @@ contract SendHederaToSepoliaWithLINK is Script {
         console.log("----------------------------------------");
         console.log("");
         console.log("CCIP Explorer:");
-        console.log("https://ccip.chain.link/msg/", vm.toString(messageId));
+        console.log(
+            string.concat(
+                "https://ccip.chain.link/msg/",
+                vm.toString(messageId)
+            )
+        );
         console.log("");
         console.log("Hedera HashScan:");
         console.log("https://hashscan.io/testnet/transaction/[YOUR_TX_HASH]");
